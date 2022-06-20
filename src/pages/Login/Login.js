@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-// import "./Login.scss";
+import "./Login.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputGroup from "../../components/InputGroup/InputGroup";
 import * as yup from "yup";
 import { login as loginRequest } from "../../services/AuthService";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 
 const schema = yup.object({
@@ -19,6 +19,9 @@ function Login() {
   const [error, setError] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/profile";
+
   const {
     register,
     handleSubmit,
@@ -34,8 +37,7 @@ function Login() {
     loginRequest(data)
       .then((response) => {
         console.log(response);
-        login(response.access_token);
-        navigate("/profile");
+        login(response.access_token, () => navigate(from, {replace: true})); 
       })
       .catch((err) => {
         setError(err?.response?.data?.message);

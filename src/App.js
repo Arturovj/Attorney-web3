@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { ThemeProvider } from "styled-components";
 import Layout from "./components/Layout/Layout";
+import { useAuthContext } from "./contexts/AuthContext";
 import Routes from "./Routes";
 import { GlobalStyle } from "./styles/globalStyles";
 import { darkTheme, lightTheme } from "./styles/theme";
@@ -11,11 +12,13 @@ export const ThemeContext = React.createContext(null);
 const App = () => {
     const [theme, setTheme] = useState("light");
     const themeStyle = theme === "light" ? lightTheme : darkTheme;
+    const { user } = useAuthContext;
 
     return (
         <ThemeContext.Provider value={{ setTheme, theme }}>
             <ThemeProvider theme={themeStyle}>
                 <GlobalStyle />
+                
                 <Helmet>
                     <title>Sidebar - Code Focus</title>
                     <link rel="preconnect" href="https://fonts.googleapis.com" />

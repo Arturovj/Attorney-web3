@@ -9,15 +9,19 @@ export const useAuthContext = () => useContext(AuthContext);
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState();
+    const [isAuthenticationFetched, setIsAuthenticationFetched] = useState(false);
 
-    const login = (token) => {
+    const login = (token, navigateCb) => {
         setToken(token);
+        getUser(navigateCb)
     }
 
-    const getUser = () => {
+    const getUser = (cb) => {
         getCurrentUser()
             .then(user => {
                 setUser(user);
+                setIsAuthenticationFetched(true);
+                cb && cb();
             })
         }
 
@@ -29,12 +33,16 @@ export const AuthContextProvider = ({ children }) => {
                 else {
                     getUser();
                 }
+            } else {
+                setIsAuthenticationFetched(true);
             }
         }, [])
 
         const value = {
             user,
-            login
+            isAuthenticationFetched,
+            login,
+            getUser
         }
 
         return (

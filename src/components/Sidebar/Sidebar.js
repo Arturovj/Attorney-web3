@@ -88,9 +88,9 @@ const Sidebar = () => {
                 </SLinkContainer>
             ))}
             <SDivider />
-            {secondaryLinksArray.map(({ icon, label }) => (
-                <SLinkContainer key={label}>
-                    <SLink to="/" style={!sidebarOpen ? { width: `fit-content` } : {}}>
+            {secondaryLinksArray.map(({ icon, label, to }) => (
+                <SLinkContainer key={label} isActive={pathname === to}>
+                    <SLink to={to} style={!sidebarOpen ? { width: `fit-content` } : {}}>
                         <SLinkIcon>{icon}</SLinkIcon>
                         {sidebarOpen && <SLinkLabel>{label}</SLinkLabel>}
                     </SLink>
@@ -141,9 +141,11 @@ const secondaryLinksArray = [
     {
         label: "Settings",
         icon: <AiOutlineSetting />,
+        to: "/settings",
     },
     {
         label: "Logout",
+        to: "/logout",
         icon: <MdLogout />,
     },
 ];

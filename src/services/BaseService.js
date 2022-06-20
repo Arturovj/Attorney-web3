@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken } from "../store/AccessTokenStore";
+import { getAccessToken, logout } from "../store/AccessTokenStore";
 
 const createHttp = (useAccessToken = false) => {
   const http = axios.create({
@@ -13,7 +13,24 @@ const createHttp = (useAccessToken = false) => {
     return request;
   });
 
-  http.interceptors.response.use((response) => response.data);
+  http.interceptors.response.use(
+    (response) => response.data,
+
+    (error) => {
+      if (
+        error?.response?.status &&
+        [401, 403].includes(error.response.status)
+      ) {
+        if (getAccessToken()) {
+          logout();
+          if (window.location.pathname !== "/login") {
+            window.location.assign("/login");
+          }
+        }
+      }
+      return Promise.reject(error);
+    }
+  );
   return http;
 };
 
