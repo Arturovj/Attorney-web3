@@ -126,7 +126,7 @@ const linksArray = [
     {
         label: "Customers",
         icon: <BsPeople />,
-        to: "/customers",
+        to: "/profile",
         notification: 0,
     },
     {
