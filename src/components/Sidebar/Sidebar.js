@@ -57,19 +57,7 @@ const Sidebar = () => {
             <SLogo>
                 <img src={logoSVG} alt="logo" />
             </SLogo>
-            <SSearch
-                onClick={searchClickHandler}
-                style={!sidebarOpen ? { width: `fit-content` } : {}}
-            >
-                <SSearchIcon>
-                    <AiOutlineSearch />
-                </SSearchIcon>
-                <input
-                    ref={searchRef}
-                    placeholder="Search"
-                    style={!sidebarOpen ? { width: 0, padding: 0 } : {}}
-                />
-            </SSearch>
+        
             <SDivider />
             {linksArray.map(({ icon, label, notification, to }) => (
                 <SLinkContainer key={label} isActive={pathname === to}>
@@ -124,13 +112,13 @@ const linksArray = [
         notification: 3,
     },
     {
-        label: "Customers",
+        label: "Profile",
         icon: <BsPeople />,
         to: "/profile",
         notification: 0,
     },
     {
-        label: "Diagrams",
+        label: "Contracts",
         icon: <AiOutlineApartment />,
         to: "/diagrams",
         notification: 1,
