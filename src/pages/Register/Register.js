@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import './SignUp.scss'
+import './Register.css'
 import { useForm } from "react-hook-form"
 import { yupResolver} from "@hookform/resolvers/yup"
 import InputGroup from '../../components/InputGroup/InputGroup';
@@ -43,50 +43,70 @@ const onSubmit = data => {
 };
 
 return( 
-  <div className='SignUp'>
-
-
-<div className="background-register">
-        <div className="shape"></div>
-        <div className="shape"></div>
+    <div className="Login">
+    <>
+      <div className="body">
+        <div class="container">
+          <div class="screen">
+            <div class="screen__content">
+              <form class="login" onSubmit={handleSubmit(onSubmit)}>
+                <div class="login__field">
+                  <i class="login__icon fas fa-user"></i>
+                  
+                  <InputGroup
+          
+            id="email"
+            register={register}
+            error={backErrors?.email || errors.email?.message}
+            type="email"
+            placeholder="EMAIL"
+          />
+                </div>
+                <div class="login__field">
+           <InputGroup
+            
+            id="name"
+            register={register}
+            error={backErrors?.name || errors.name?.message}
+            placeholder="NAME"
+          />
+          </div>
+          <div class="login__field">
+           <InputGroup
+            
+            id="password"
+            register={register}
+            error={backErrors?.password || errors.password?.message}
+            type="password"
+            placeholder="PASSWORD"
+          />
+                </div>
+                <button class="button login__submit">
+                  <span class="button__text">Register Now</span>
+                  <i class="button__icon fas fa-chevron-right"></i>
+                </button>
+              </form>
+              <div class="social-login">
+                <h3>log in via</h3>
+                <div class="social-icons">
+                  <a href="#" class="social-login__icon fab fa-instagram"></a>
+                  <a href="#" class="social-login__icon fab fa-facebook"></a>
+                  <a href="#" class="social-login__icon fab fa-twitter"></a>
+                </div>
+              </div>
+            </div>
+            <div class="screen__background">
+              <span class="screen__background__shape screen__background__shape4"></span>
+              <span class="screen__background__shape screen__background__shape3"></span>
+              <span class="screen__background__shape screen__background__shape2"></span>
+              <span class="screen__background__shape screen__background__shape1"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
     </div>
-
-
-
-    <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
-
-
-      <InputGroup
-        label="Email"
-        id="email"
-        register={register}
-        error={backErrors?.email || errors.email?.message}
-        type="email"
-        placeholder="EMAIL"
-      />
-
-
-       <InputGroup
-        label="Name"
-        id="name"
-        register={register}
-        error={backErrors?.name || errors.name?.message}
-        placeholder="NAME"
-      />
-       <InputGroup
-        label="Password"
-        id="password"
-        register={register}
-        error={backErrors?.password || errors.password?.message}
-        type="password"
-        placeholder="PASSWORD"
-      />
-
-
-        <button className={`register-btn btn-${isSubmitting} ? 'secondary' : 'primary'`}>{isSubmitting ? 'Creating user...' : 'Submit'}</button>
-    </form>
-
-  </div>
 )
 
 }
+

@@ -56,6 +56,7 @@ function Login() {
                 <form class="login" onSubmit={handleSubmit(onSubmit)}>
                   <div class="login__field">
                     <i class="login__icon fas fa-user"></i>
+                    
                     <InputGroup
                       id="email"
                       register={register}
@@ -73,6 +74,7 @@ function Login() {
                       type="password"
                       placeholder="PASSWORD"
                     />
+                    
                   </div>
                   <button class="button login__submit">
                     <span class="button__text">Log In Now</span>
