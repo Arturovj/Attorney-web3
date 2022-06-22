@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes as Routess } from "react-router-dom";
 import ProtectedRoute from "./guards/ProtectedRouted";
+import UnProtectedRoute from "./guards/UnProtectedRoutes";
 import HomePage from "./pages/HomePage";
 import Login from "./pages/Login/Login";
 import Logout from "./pages/Logout/Logout";
@@ -21,8 +22,10 @@ const Routes = () => {
                 <Route path='/logout' element={<Logout/>} />
             
             </Route>
+            <Route path="/" element={<UnProtectedRoute />} >
             <Route path='/sign-up' element={<SignUp/>} />
             <Route path='/login' element ={<Login/>} />
+            </Route>
         </Routess>
     );
 };
