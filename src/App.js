@@ -12,9 +12,12 @@ export const ThemeContext = React.createContext(null);
 const App = () => {
     const [theme, setTheme] = useState("light");
     const themeStyle = theme === "light" ? lightTheme : darkTheme;
-    const { user } = useAuthContext;
+    const { isAuthenticationFetched } = useAuthContext();
 
     return (
+            <>
+        {!isAuthenticationFetched ? ( <p>Loading...</p> ) : (
+
         <ThemeContext.Provider value={{ setTheme, theme }}>
             <ThemeProvider theme={themeStyle}>
                 <GlobalStyle />
@@ -35,6 +38,8 @@ const App = () => {
                 </>
             </ThemeProvider>
         </ThemeContext.Provider>
+        )}
+        </>
     );
 };
 

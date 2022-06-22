@@ -120,7 +120,7 @@ const linksArray = [
     {
         label: "Contracts",
         icon: <AiOutlineApartment />,
-        to: "/diagrams",
+        to: "/posts",
         notification: 1,
     },
 ];
